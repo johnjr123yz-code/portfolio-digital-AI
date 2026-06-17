@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Flow AI — Automate · Engage · Grow</title>
+<meta name="description" content="Digital Flow AI builds websites, AI agents, chatbots, and automation systems that help businesses save time, generate more leads, and scale faster.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue:    #2563EB;
+    --cyan:    #06B6D4;
+    --purple:  #7C3AED;
+    --indigo:  #1E2B5E;
+    --grad:    linear-gradient(135deg, #2563EB 0%, #06B6D4 50%, #7C3AED 100%);
+    --grad2:   linear-gradient(135deg, #7C3AED 0%, #2563EB 100%);
+    --white:   #ffffff;
+    --offwhite:#F8FAFF;
+    --glass:   rgba(255,255,255,0.65);
+    --glass-b: rgba(255,255,255,0.25);
+    --border:  rgba(99,163,255,0.18);
+    --text:    #0F172A;
+    --muted:   #64748B;
+    --radius:  18px;
+    --shadow:  0 8px 40px rgba(37,99,235,0.10);
+    --shadow-lg: 0 20px 60px rgba(37,99,235,0.18);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+  h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; }
+
+  /* ── UTILITY ─────────────────────────────────────── */
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(37,99,235,0.08); color: var(--blue); border: 1px solid rgba(37,99,235,0.18); border-radius: 100px; padding: 5px 16px; font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--grad); color: #fff; border: none; border-radius: 100px;
+    padding: 14px 32px; font-size: .95rem; font-weight: 700; cursor: pointer;
+    box-shadow: 0 4px 24px rgba(37,99,235,0.35);
+    transition: transform .2s, box-shadow .2s; text-decoration: none;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,99,235,0.45); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--blue);
+    border: 2px solid rgba(37,99,235,0.35); border-radius: 100px;
+    padding: 13px 30px; font-size: .95rem; font-weight: 700; cursor: pointer;
+    transition: all .2s; text-decoration: none;
+  }
+  .btn-outline:hover { background: rgba(37,99,235,0.06); border-color: var(--blue); }
+
+  .glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 14px 0;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(37,99,235,0.10); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo img { height: 44px; width: 44px; border-radius: 10px; object-fit: contain; }
+  .nav-logo span { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; }
+  .nav-logo .flow { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a { font-size: .88rem; font-weight: 600; color: var(--text); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta { display: flex; align-items: center; gap: 12px; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+
+  /* ── HERO ────────────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 120px 0 80px;
+    background: radial-gradient(ellipse 80% 60% at 60% 30%, rgba(6,182,212,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 50% at 10% 80%, rgba(124,58,237,0.07) 0%, transparent 70%),
+                var(--offwhite);
+  }
+  .hero-bg-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  }
+  .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; }
+  .hero-badge { margin-bottom: 20px; }
+  .hero-h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 900; margin-bottom: 20px; }
+  .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 500px; margin-bottom: 36px; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+  .trust-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .trust-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: white; border: 1px solid var(--border);
+    border-radius: 100px; padding: 8px 16px; font-size: .82rem; font-weight: 600; color: var(--indigo);
+    box-shadow: 0 2px 12px rgba(37,99,235,0.06);
+  }
+  .trust-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--grad); }
+
+  /* Hero visual */
+  .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+  .hero-orb {
+    position: absolute;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, rgba(37,99,235,0.10) 50%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { transform: scale(1); opacity: .8; } 50% { transform: scale(1.08); opacity: 1; } }
+  .hero-logo-wrap {
+    position: relative; z-index: 2;
+    width: 280px; height: 280px;
+    background: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 1px var(--border), 0 20px 80px rgba(37,99,235,0.20);
+  }
+  .hero-logo-wrap img { width: 220px; height: 220px; object-fit: contain; }
+
+  /* Floating stat cards */
+  .float-card {
+    position: absolute; z-index: 3;
+    background: white; border: 1px solid var(--border);
+    border-radius: 14px; padding: 12px 18px;
+    box-shadow: 0 8px 30px rgba(37,99,235,0.12);
+    animation: floatY 3s ease-in-out infinite;
+  }
+  .float-card:nth-child(2) { animation-delay: -1s; top: 20px; right: -20px; }
+  .float-card:nth-child(3) { animation-delay: -2s; bottom: 30px; left: -30px; }
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .float-card .fnum { font-size: 1.4rem; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .float-card .flabel { font-size: .72rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+
+  /* ── SECTION COMMON ──────────────────────────────── */
+  section { padding: 96px 0; }
+  .section-header { text-align: center; margin-bottom: 64px; }
+  .section-header h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 800; margin: 12px 0 16px; }
+  .section-header p { font-size: 1.05rem; color: var(--muted); max-width: 580px; margin: 0 auto; }
+
+  /* ── SERVICES ────────────────────────────────────── */
+  #services { background: var(--offwhite); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .service-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px 28px;
+    transition: transform .25s, box-shadow .25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--grad); opacity: 0; transition: opacity .25s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .service-card:hover::before { opacity: 1; }
+  .svc-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(37,99,235,0.10), rgba(6,182,212,0.10));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 18px;
+    border: 1px solid rgba(37,99,235,0.12);
+  }
+  .service-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+  .service-card p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── INDUSTRIES ──────────────────────────────────── */
+  #industries { background: white; }
+  .industries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .industry-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 22px; cursor: pointer;
+    transition: all .25s; position: relative; overflow: hidden;
+  }
+  .industry-card:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(37,99,235,0.12); transform: translateY(-3px); }
+  .ind-emoji { font-size: 2rem; margin-bottom: 12px; }
+  .industry-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: 14px; }
+  .ind-row { margin-bottom: 8px; }
+  .ind-row .label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--blue); margin-bottom: 2px; }
+  .ind-row p { font-size: .78rem; color: var(--muted); line-height: 1.5; }
+  .ind-result { font-size: .78rem; color: #059669; font-weight: 600; }
+
+  /* ── WHY US ──────────────────────────────────────── */
+  #why { background: var(--indigo); color: white; position: relative; overflow: hidden; }
+  #why::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(6,182,212,0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 60% at 10% 20%, rgba(124,58,237,0.15) 0%, transparent 70%);
+  }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; }
+  .why-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius); padding: 28px 24px;
+    transition: background .25s;
+  }
+  .why-card:hover { background: rgba(255,255,255,0.10); }
+  .why-icon { font-size: 1.8rem; margin-bottom: 14px; }
+  .why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .why-card p { font-size: .85rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+  #why .section-header { color: white; }
+  #why .section-header p { color: rgba(255,255,255,0.65); }
+
+  /* ── HOW WE WORK ─────────────────────────────────── */
+  #process { background: var(--offwhite); }
+  .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; position: relative; }
+  .process-steps::before {
+    content: ''; position: absolute; top: 36px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan), var(--purple));
+    z-index: 0;
+  }
+  .step-card {
+    position: relative; z-index: 1; text-align: center; padding: 20px 12px;
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    transition: box-shadow .25s, transform .25s;
+  }
+  .step-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+  .step-num {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--grad);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 800; font-size: .95rem; margin: 0 auto 14px;
+  }
+  .step-card h3 { font-size: .9rem; font-weight: 700; margin-bottom: 8px; }
+  .step-card p { font-size: .78rem; color: var(--muted); }
+
+  /* ── N8N WORKFLOWS ───────────────────────────────── */
+  #workflows { background: white; }
+  .workflows-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .workflow-card {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; transition: box-shadow .25s, transform .25s;
+  }
+  .workflow-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .wf-header { padding: 20px 24px; background: linear-gradient(135deg, var(--indigo), #2563EB); color: white; }
+  .wf-header .wf-cat { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; opacity: .7; margin-bottom: 6px; }
+  .wf-header h3 { font-size: .97rem; font-weight: 700; }
+  .wf-body { padding: 20px 24px; }
+  .wf-nodes { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .wf-node {
+    display: flex; align-items: center; gap: 5px;
+    background: var(--offwhite); border: 1px solid var(--border);
+    border-radius: 100px; padding: 4px 12px; font-size: .72rem; font-weight: 600; color: var(--indigo);
+  }
+  .wf-node .nd { width: 6px; height: 6px; border-radius: 50%; }
+  .wf-desc { font-size: .82rem; color: var(--muted); line-height: 1.55; }
+  .wf-trigger { font-size: .75rem; color: var(--purple); font-weight: 600; margin-top: 10px; }
+
+  /* ── PORTFOLIO ───────────────────────────────────── */
+  #portfolio { background: var(--offwhite); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .portfolio-card {
+    border-radius: var(--radius); overflow: hidden;
+    background: white; border: 1px solid var(--border);
+    transition: box-shadow .25s, transform .25s;
+  }
+  .portfolio-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+  .port-thumb {
+    height: 180px; display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; position: relative; overflow: hidden;
+  }
+  .port-thumb .port-bg { position: absolute; inset: 0; opacity: .12; }
+  .port-thumb .port-emoji { position: relative; z-index: 1; }
+  .port-info { padding: 20px 22px; }
+  .port-cat { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--blue); margin-bottom: 6px; }
+  .port-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+  .port-info p { font-size: .82rem; color: var(--muted); }
+  .port-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .port-tag { background: var(--offwhite); border: 1px solid var(--border); border-radius: 100px; padding: 3px 10px; font-size: .7rem; font-weight: 600; color: var(--indigo); }
+
+  /* ── CASE STUDIES ────────────────────────────────── */
+  #results { background: var(--indigo); color: white; position: relative; overflow: hidden; }
+  #results::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 90% 40%, rgba(6,182,212,0.12), transparent);
+  }
+  .results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; margin-bottom: 60px; }
+  .result-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius); padding: 28px 22px; text-align: center;
+  }
+  .result-num { font-size: 2.4rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .result-label { font-size: .85rem; color: rgba(255,255,255,0.65); margin-top: 6px; }
+  .cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; position: relative; }
+  .case-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius); padding: 28px 26px;
+  }
+  .case-industry { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--cyan); margin-bottom: 10px; }
+  .case-card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 10px; }
+  .case-card p { font-size: .85rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 14px; }
+  .case-metrics { display: flex; gap: 20px; flex-wrap: wrap; }
+  .case-metric .val { font-size: 1.3rem; font-weight: 800; color: var(--cyan); }
+  .case-metric .lbl { font-size: .72rem; color: rgba(255,255,255,0.55); }
+  #results .section-header { color: white; }
+  #results .section-header p { color: rgba(255,255,255,0.65); }
+
+  /* ── TESTIMONIALS ────────────────────────────────── */
+  #testimonials { background: var(--offwhite); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .testi-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 26px; transition: box-shadow .25s;
+  }
+  .testi-card:hover { box-shadow: var(--shadow-lg); }
+  .stars { color: #F59E0B; font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+  .testi-quote { font-size: .92rem; color: var(--text); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; color: white; flex-shrink: 0; }
+  .testi-name { font-weight: 700; font-size: .9rem; }
+  .testi-role { font-size: .78rem; color: var(--muted); }
+
+  /* ── FAQ ─────────────────────────────────────────── */
+  #faq { background: white; }
+  .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .faq-item {
+    background: var(--offwhite); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; text-align: left; padding: 20px 24px;
+    background: none; border: none; cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif; font-size: .97rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .faq-q .chevron { font-size: .8rem; transition: transform .3s; flex-shrink: 0; }
+  .faq-q.open .chevron { transform: rotate(180deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .faq-a.open { max-height: 300px; }
+  .faq-a p { padding: 0 24px 20px; font-size: .88rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── CONTACT ─────────────────────────────────────── */
+  #contact { background: var(--offwhite); }
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
+  .contact-left h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 16px; }
+  .contact-left p { color: var(--muted); font-size: .97rem; line-height: 1.7; margin-bottom: 32px; }
+  .contact-feature { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: .9rem; font-weight: 600; }
+  .contact-feature .cf-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; }
+  .contact-form {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 36px 32px; box-shadow: var(--shadow);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: .82rem; font-weight: 700; margin-bottom: 7px; color: var(--indigo); }
+  .form-group input, .form-group textarea {
+    width: 100%; padding: 12px 16px;
+    background: var(--offwhite); border: 1.5px solid var(--border);
+    border-radius: 10px; font-family: 'Inter', sans-serif; font-size: .9rem;
+    color: var(--text); transition: border-color .2s;
+    outline: none; resize: vertical;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--blue); }
+  .form-group textarea { min-height: 120px; }
+  .form-submit { width: 100%; padding: 15px; font-size: 1rem; font-weight: 700; }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: var(--indigo); color: white; padding: 60px 0 32px;
+    position: relative; overflow: hidden;
+  }
+  footer::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(6,182,212,0.08), transparent);
+  }
+  .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; position: relative; margin-bottom: 48px; }
+  .footer-brand img { height: 52px; width: 52px; border-radius: 12px; object-fit: contain; margin-bottom: 14px; }
+  .footer-brand p { font-size: .85rem; color: rgba(255,255,255,.55); line-height: 1.65; max-width: 260px; margin-bottom: 20px; }
+  .tagline-row { font-size: .78rem; color: rgba(255,255,255,.35); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 16px; }
+  .social-links { display: flex; gap: 12px; }
+  .social-link {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center; font-size: .9rem;
+    text-decoration: none; transition: background .2s;
+  }
+  .social-link:hover { background: rgba(255,255,255,0.15); }
+  .footer-col h4 { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.45); margin-bottom: 18px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { font-size: .87rem; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
+  .footer-col ul a:hover { color: var(--cyan); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.10); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; position: relative; }
+  .footer-bottom p { font-size: .8rem; color: rgba(255,255,255,.4); }
+
+  /* ── ANIMATIONS ──────────────────────────────────── */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .stagger-1 { transition-delay: .1s; }
+  .stagger-2 { transition-delay: .2s; }
+  .stagger-3 { transition-delay: .3s; }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .industries-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: repeat(3, 1fr); }
+    .process-steps::before { display: none; }
+    .workflows-grid { grid-template-columns: repeat(2, 1fr); }
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .cases-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-visual { display: none; }
+    .trust-pills { justify-content: center; }
+    .hero-btns { justify-content: center; }
+    .hero-sub { margin-left: auto; margin-right: auto; }
+    .services-grid { grid-template-columns: 1fr; }
+    .industries-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .workflows-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .testi-grid { grid-template-columns: 1fr; }
+    .contact-wrap { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#hero" class="nav-logo">
+      <img src="BBFDAF58-B669-4FE3-A9B8-FEB50209DB09.png" alt="Digital Flow AI Logo" onerror="this.style.display='none'">
+      <span>Digital <span class="flow">Flow AI</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#workflows">Workflows</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://wa.me/213796777431" class="btn-primary" style="padding:11px 22px;font-size:.85rem;">Book Free Consultation</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="tag">✦ AI-Powered Agency</span>
+      </div>
+      <h1 class="hero-h1">
+        Automate, Engage<br>
+        &amp; <span class="grad-text">Grow with AI</span>
+      </h1>
+      <p class="hero-sub">
+        We build websites, AI agents, chatbots, and automation systems that help businesses save time, generate more leads, and scale faster.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">🚀 Book Free Consultation</a>
+        <a href="#portfolio" class="btn-outline">View Portfolio →</a>
+      </div>
+      <div class="trust-pills">
+        <div class="trust-pill"><span class="dot"></span>Fast Delivery</div>
+        <div class="trust-pill"><span class="dot"></span>AI-Powered Solutions</div>
+        <div class="trust-pill"><span class="dot"></span>Business Growth Focus</div>
+        <div class="trust-pill"><span class="dot"></span>Professional Support</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-orb"></div>
+      <div class="hero-logo-wrap">
+        <img src="BBFDAF58-B669-4FE3-A9B8-FEB50209DB09.png" alt="Digital Flow AI">
+      </div>
+      <div class="float-card" style="top:20px;right:-10px;">
+        <div class="fnum">3×</div>
+        <div class="flabel">More Leads</div>
+      </div>
+      <div class="float-card" style="bottom:30px;left:-20px;">
+        <div class="fnum">80%</div>
+        <div class="flabel">Time Saved</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="tag">What We Build</span>
+      <h2>Everything Your Business Needs to <span class="grad-text">Grow Faster</span></h2>
+      <p>Six core services designed to automate operations, attract customers, and convert leads on autopilot.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up stagger-1">
+        <div class="svc-icon">🌐</div>
+        <h3>Websites &amp; Landing Pages</h3>
+        <p>Professional, high-converting websites and landing pages built to turn visitors into paying customers — fast.</p>
+      </div>
+      <div class="service-card fade-up stagger-2">
+        <div class="svc-icon">🤖</div>
+        <h3>AI Agents &amp; Automation</h3>
+        <p>Custom AI agents that handle repetitive tasks, respond to customers, and run business processes 24/7 without human input.</p>
+      </div>
+      <div class="service-card fade-up stagger-3">
+        <div class="svc-icon">💬</div>
+        <h3>Chatbots &amp; Messenger Bots</h3>
+        <p>AI-powered chatbots for your website, Facebook, Instagram, and WhatsApp — always on, always converting.</p>
+      </div>
+      <div class="service-card fade-up stagger-1">
+        <div class="svc-icon">🎯</div>
+        <h3>Lead Generation</h3>
+        <p>End-to-end systems that attract, capture, and deliver qualified leads directly into your pipeline.</p>
+      </div>
+      <div class="service-card fade-up stagger-2">
+        <div class="svc-icon">✅</div>
+        <h3>Lead Qualification</h3>
+        <p>Automatically score, segment, and prioritize leads so your team only speaks to the most promising prospects.</p>
+      </div>
+      <div class="service-card fade-up stagger-3">
+        <div class="svc-icon">⚙️</div>
+        <h3>Workflow Automation</h3>
+        <p>Connect your tools and automate entire business processes — from bookings to invoicing — using platforms like n8n and Make.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="tag">Industries We Serve</span>
+      <h2>Built for <span class="grad-text">Your Industry</span></h2>
+      <p>Every sector has unique challenges. We know them — and we've built systems that solve them.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-card fade-up">
+        <div class="ind-emoji">🍽️</div>
+        <h3>Restaurants</h3>
+        <div class="ind-row"><div class="label">Problem</div><p>Lost reservations, missed orders, no follow-ups</p></div>
+        <div class="ind-row"><div class="label">Solution</div><p>AI booking bot + automated review requests</p></div>
+        <div class="ind-result">↑ 40% repeat customers</div>
+      </div>
+      <div class="industry-card fade-up stagger-1">
+        <div class="ind-emoji">🦷</div>
+        <h3>Dental Clinics</h3>
+        <div class="ind-row"><div class="label">Problem</div><p>No-shows, slow appointment scheduling</p></div>
+        <div class="ind-row"><div class="label">Solution</div><p>WhatsApp reminder bot + online booking</p></div>
+        <div class="ind-result">↓ 60% no-show rate</div>
+      </div>
+      <div class="industry-card fade-up stagger-2">
+        <div class="ind-emoji">🏥</div>
+        <h3>Medical Centers</h3>
+        <div class="ind-row"><div class="label">Problem</div><p>Overwhelmed front desk, patient follow-up gaps</p></div>
+        <div class="ind-row"><div class="label">Solution</div><p>AI receptionist + automated patient journey</p></div>
+        <div class="ind-result">↑ 55% patient retention</div>
+      </div>
+      <div class="industry-card fade-up stagger-3">
+        <div class="ind-emoji">🏋️</div>
+        <h3>Gyms &amp; Fitness</h3>
+        <div class="ind-row"><div class="label">Problem</div><p>High churn, manual membership management</p></div>
+        <div class="ind-row"><div class="label">Solution</div><p>Lead capture funnels + renewal automation</p></div>
+        <div class="ind-result">↑ 3× trial conversions</div>
+      </div>
+      <div class="industry-card fade-up">
+        <div class="ind-emoji">🏠</div>
+        <h3>Real Estate</h3>
+        <div class="ind-row"><div class="label">Problem</div><p>Slow lead response, lost buyer inquiries</p></div>
+        <div class="ind-row"><div class="label">Solution</div><p>AI qualifier + instant property matching bot</p></div>
+        <div class="ind-result">↑ 2× qualified appointments</div>
+      </div>
+      <div class="industry-card fade-up stagger-1">
+        <div class="ind-emoji">🛍️</div>
+        <h3>E-commerce Stores</h3>
+        <div class="ind-row"><div class="label">Problem</div><p>Cart abandonment, poor customer support</p></div>
+        <div class="ind-row"><div class="label">Solution</div><p>Retargeting automation + AI support agent</p></div>
+        <div class="ind-result">↑ 35% revenue recovery</div>
+      </div>
+      <div class="industry-card fade-up stagger-2">
+        <div class="ind-emoji">💅</div>
+        <h3>Beauty Salons</h3>
+        <div class="ind-row"><div class="label">Problem</div><p>Booking conflicts, no digital presence</p></div>
+        <div class="ind-row"><div class="label">Solution</div><p>Smart booking page + Instagram DM automation</p></div>
+        <div class="ind-result">↑ 80% bookings online</div>
+      </div>
+      <div class="industry-card fade-up stagger-3">
+        <div class="ind-emoji">🏪</div>
+        <h3>Local Businesses</h3>
+        <div class="ind-row"><div class="label">Problem</div><p>No online visibility, zero automation</p></div>
+        <div class="ind-row"><div class="label">Solution</div><p>Website + Google review bot + follow-up flows</p></div>
+        <div class="ind-result">↑ 5× online inquiries</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="tag" style="background:rgba(255,255,255,0.10);color:white;border-color:rgba(255,255,255,0.20)">Why Choose Us</span>
+      <h2>The <span class="grad-text">Digital Flow AI</span> Advantage</h2>
+      <p>We don't just build tools. We build business growth systems that run while you sleep.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-up"><div class="why-icon">⏱️</div><h3>Save Time Through Automation</h3><p>Eliminate manual work from your daily operations. Let AI handle repetitive tasks 24/7 so you can focus on what matters most.</p></div>
+      <div class="why-card fade-up stagger-1"><div class="why-icon">💰</div><h3>Increase Revenue</h3><p>More leads, faster responses, and smarter follow-ups translate directly into booked appointments and closed sales.</p></div>
+      <div class="why-card fade-up stagger-2"><div class="why-icon">🌟</div><h3>Improve Customer Experience</h3><p>Instant replies, personalized interactions, and seamless booking flows that make your business feel premium.</p></div>
+      <div class="why-card fade-up"><div class="why-icon">🎯</div><h3>Capture More Leads</h3><p>Never miss a potential customer again. Our systems capture, qualify, and follow up with every lead automatically.</p></div>
+      <div class="why-card fade-up stagger-1"><div class="why-icon">🔧</div><h3>Reduce Manual Work</h3><p>Stop spending hours on tasks that a well-built automation can handle in seconds — consistently and without error.</p></div>
+      <div class="why-card fade-up stagger-2"><div class="why-icon">📈</div><h3>Scale Faster</h3><p>Systems that grow with you. Add more customers without adding headcount — automation scales infinitely.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="tag">How We Work</span>
+      <h2>From Idea to <span class="grad-text">Live System</span> in 5 Steps</h2>
+      <p>A proven delivery process that gets you results without the back-and-forth headaches.</p>
+    </div>
+    <div class="process-steps">
+      <div class="step-card fade-up stagger-1"><div class="step-num">1</div><h3>Discovery</h3><p>Deep dive into your business, goals, and current bottlenecks to map the right solution.</p></div>
+      <div class="step-card fade-up stagger-2"><div class="step-num">2</div><h3>Strategy</h3><p>We design a custom automation and growth plan tailored to your industry and budget.</p></div>
+      <div class="step-card fade-up stagger-3"><div class="step-num">3</div><h3>Development</h3><p>We build, integrate, and test everything — websites, bots, flows, and APIs.</p></div>
+      <div class="step-card fade-up stagger-1"><div class="step-num">4</div><h3>Launch</h3><p>Go live with full handover, training, and documentation so you're never left guessing.</p></div>
+      <div class="step-card fade-up stagger-2"><div class="step-num">5</div><h3>Optimization &amp; Growth</h3><p>We monitor, refine, and improve your systems over time so results keep compounding.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- N8N WORKFLOWS -->
+<section id="workflows">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="tag">n8n Workflow Examples</span>
+      <h2>Real Automations <span class="grad-text">We Build</span> for Clients</h2>
+      <p>Powered by n8n — open-source workflow automation that connects every tool your business uses.</p>
+    </div>
+    <div class="workflows-grid">
+
+      <div class="workflow-card fade-up">
+        <div class="wf-header">
+          <div class="wf-cat">Lead Generation</div>
+          <h3>Instagram DM → CRM Lead Pipeline</h3>
+        </div>
+        <div class="wf-body">
+          <div class="wf-nodes">
+            <div class="wf-node"><div class="nd" style="background:#E11D48"></div>Instagram Trigger</div>
+            <div class="wf-node"><div class="nd" style="background:#2563EB"></div>AI Classifier</div>
+            <div class="wf-node"><div class="nd" style="background:#059669"></div>HubSpot CRM</div>
+            <div class="wf-node"><div class="nd" style="background:#7C3AED"></div>Slack Alert</div>
+          </div>
+          <p class="wf-desc">When a prospect comments on or DMs your Instagram post, the AI classifies intent, creates a CRM contact, assigns a rep, and sends a Slack alert — all in under 30 seconds.</p>
+          <div class="wf-trigger">⚡ Trigger: New Instagram message or comment</div>
+        </div>
+      </div>
+
+      <div class="workflow-card fade-up stagger-1">
+        <div class="wf-header">
+          <div class="wf-cat">Appointment Management</div>
+          <h3>WhatsApp Booking Reminder &amp; Follow-Up</h3>
+        </div>
+        <div class="wf-body">
+          <div class="wf-nodes">
+            <div class="wf-node"><div class="nd" style="background:#25D366"></div>WhatsApp API</div>
+            <div class="wf-node"><div class="nd" style="background:#F59E0B"></div>Google Calendar</div>
+            <div class="wf-node"><div class="nd" style="background:#2563EB"></div>Wait Node</div>
+            <div class="wf-node"><div class="nd" style="background:#059669"></div>Google Sheets</div>
+          </div>
+          <p class="wf-desc">Sends a WhatsApp reminder 24h and 2h before every appointment. If no confirmation, auto-calls and logs the outcome. Post-visit review request sent automatically.</p>
+          <div class="wf-trigger">⚡ Trigger: New calendar event created</div>
+        </div>
+      </div>
+
+      <div class="workflow-card fade-up stagger-2">
+        <div class="wf-header">
+          <div class="wf-cat">E-commerce</div>
+          <h3>Abandoned Cart Recovery Sequence</h3>
+        </div>
+        <div class="wf-body">
+          <div class="wf-nodes">
+            <div class="wf-node"><div class="nd" style="background:#96BF48"></div>Shopify</div>
+            <div class="wf-node"><div class="nd" style="background:#2563EB"></div>Email (SMTP)</div>
+            <div class="wf-node"><div class="nd" style="background:#25D366"></div>WhatsApp</div>
+            <div class="wf-node"><div class="nd" style="background:#7C3AED"></div>AI Copywriter</div>
+          </div>
+          <p class="wf-desc">Detects cart abandonment, waits 1 hour, then sends a personalized email. If no purchase in 24h, sends a WhatsApp nudge with a dynamic discount code generated by AI.</p>
+          <div class="wf-trigger">⚡ Trigger: Shopify cart.abandoned webhook</div>
+        </div>
+      </div>
+
+      <div class="workflow-card fade-up">
+        <div class="wf-header">
+          <div class="wf-cat">Customer Support</div>
+          <h3>AI Support Agent with Human Escalation</h3>
+        </div>
+        <div class="wf-body">
+          <div class="wf-nodes">
+            <div class="wf-node"><div class="nd" style="background:#06B6D4"></div>Chat Widget</div>
+            <div class="wf-node"><div class="nd" style="background:#7C3AED"></div>GPT-4o</div>
+            <div class="wf-node"><div class="nd" style="background:#F59E0B"></div>Sentiment Check</div>
+            <div class="wf-node"><div class="nd" style="background:#E11D48"></div>Slack Escalation</div>
+          </div>
+          <p class="wf-desc">AI handles 90% of support queries automatically. Negative sentiment or unanswered questions trigger a live-agent Slack alert with full conversation context pre-loaded.</p>
+          <div class="wf-trigger">⚡ Trigger: New chat message received</div>
+        </div>
+      </div>
+
+      <div class="workflow-card fade-up stagger-1">
+        <div class="wf-header">
+          <div class="wf-cat">Review Generation</div>
+          <h3>Post-Service Google Review Request</h3>
+        </div>
+        <div class="wf-body">
+          <div class="wf-nodes">
+            <div class="wf-node"><div class="nd" style="background:#4285F4"></div>Google My Business</div>
+            <div class="wf-node"><div class="nd" style="background:#25D366"></div>WhatsApp</div>
+            <div class="wf-node"><div class="nd" style="background:#059669"></div>Google Sheets</div>
+            <div class="wf-node"><div class="nd" style="background:#2563EB"></div>IF Node</div>
+          </div>
+          <p class="wf-desc">2 hours after a service is marked complete, sends a personalized WhatsApp asking for a Google review. Tracks responses and filters out unhappy customers before they post publicly.</p>
+          <div class="wf-trigger">⚡ Trigger: Service status updated to "Completed"</div>
+        </div>
+      </div>
+
+      <div class="workflow-card fade-up stagger-2">
+        <div class="wf-header">
+          <div class="wf-cat">Lead Qualification</div>
+          <h3>AI Lead Scoring &amp; Sales Routing</h3>
+        </div>
+        <div class="wf-body">
+          <div class="wf-nodes">
+            <div class="wf-node"><div class="nd" style="background:#F59E0B"></div>Typeform</div>
+            <div class="wf-node"><div class="nd" style="background:#7C3AED"></div>Claude AI</div>
+            <div class="wf-node"><div class="nd" style="background:#2563EB"></div>HubSpot</div>
+            <div class="wf-node"><div class="nd" style="background:#E11D48"></div>Calendly</div>
+          </div>
+          <p class="wf-desc">New form submissions are scored by AI (budget, intent, timeline). Hot leads (score 8+) get an instant Calendly booking link. Warm leads enter a nurture email sequence. Cold leads are archived.</p>
+          <div class="wf-trigger">⚡ Trigger: New form submission via webhook</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="tag">Our Work</span>
+      <h2>Projects That <span class="grad-text">Drive Results</span></h2>
+      <p>A selection of websites, automations, and AI systems we've delivered for clients.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card fade-up">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #EFF6FF, #DBEAFE);">
+          <div class="port-emoji">🏋️</div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Website + Automation</div>
+          <h3>FitLife Gym — Lead Capture System</h3>
+          <p>High-converting landing page with a free trial funnel, WhatsApp bot, and automated 7-day nurture sequence.</p>
+          <div class="port-tags">
+            <span class="port-tag">Website</span>
+            <span class="port-tag">WhatsApp Bot</span>
+            <span class="port-tag">n8n</span>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-card fade-up stagger-1">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #F0FDF4, #DCFCE7);">
+          <div class="port-emoji">🦷</div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">AI Agent</div>
+          <h3>SmileFirst Dental — AI Receptionist</h3>
+          <p>24/7 AI receptionist that books appointments, answers FAQs, and sends WhatsApp reminders — reducing no-shows by 60%.</p>
+          <div class="port-tags">
+            <span class="port-tag">AI Agent</span>
+            <span class="port-tag">WhatsApp</span>
+            <span class="port-tag">Booking</span>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-card fade-up stagger-2">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #FFF7ED, #FED7AA);">
+          <div class="port-emoji">🍕</div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Chatbot + Lead Gen</div>
+          <h3>Bella Roma Restaurant — Order Bot</h3>
+          <p>Facebook Messenger bot that takes reservations, captures customer data, and sends personalized offers to regulars.</p>
+          <div class="port-tags">
+            <span class="port-tag">Messenger Bot</span>
+            <span class="port-tag">Lead Gen</span>
+            <span class="port-tag">CRM</span>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-card fade-up">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #FDF4FF, #F3E8FF);">
+          <div class="port-emoji">🏠</div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Lead Qualification</div>
+          <h3>PropEdge Realty — Smart Lead Qualifier</h3>
+          <p>n8n workflow that scores inbound buyer leads by budget and timeline, auto-books meetings for high-intent prospects.</p>
+          <div class="port-tags">
+            <span class="port-tag">n8n</span>
+            <span class="port-tag">AI Scoring</span>
+            <span class="port-tag">Calendly</span>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-card fade-up stagger-1">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #FFF1F2, #FFE4E6);">
+          <div class="port-emoji">💅</div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Website + Booking</div>
+          <h3>Luxe Beauty Studio — Booking Website</h3>
+          <p>Luxury beauty salon website with Instagram-integrated portfolio, online booking, and automated reminder flows.</p>
+          <div class="port-tags">
+            <span class="port-tag">Website</span>
+            <span class="port-tag">Booking</span>
+            <span class="port-tag">Instagram</span>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-card fade-up stagger-2">
+        <div class="port-thumb" style="background: linear-gradient(135deg, #EFF6FF, #E0E7FF);">
+          <div class="port-emoji">🛍️</div>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">E-commerce Automation</div>
+          <h3>StyleHouse — Cart Recovery System</h3>
+          <p>Automated abandoned cart recovery via email + WhatsApp sequences, recovering 35% of lost revenue monthly.</p>
+          <div class="port-tags">
+            <span class="port-tag">Shopify</span>
+            <span class="port-tag">n8n</span>
+            <span class="port-tag">WhatsApp</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS / CASE STUDIES -->
+<section id="results">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="tag" style="background:rgba(255,255,255,0.10);color:white;border-color:rgba(255,255,255,0.20)">Measurable Results</span>
+      <h2>Numbers That <span class="grad-text">Speak for Themselves</span></h2>
+      <p>Every system we build is measured, optimized, and delivered with real business outcomes.</p>
+    </div>
+    <div class="results-grid fade-up">
+      <div class="result-card"><div class="result-num">3×</div><div class="result-label">Average Lead Increase</div></div>
+      <div class="result-card"><div class="result-num">80%</div><div class="result-label">Faster Response Time</div></div>
+      <div class="result-card"><div class="result-num">60%</div><div class="result-label">Reduction in Manual Work</div></div>
+      <div class="result-card"><div class="result-num">45%</div><div class="result-label">Higher Conversion Rate</div></div>
+    </div>
+    <div class="cases-grid fade-up">
+      <div class="case-card">
+        <div class="case-industry">Fitness Industry</div>
+        <h3>How FitLife Tripled Trial Sign-Ups in 60 Days</h3>
+        <p>Before working with us, FitLife had no digital lead system — just walk-ins. We built a landing page with a free trial offer, a WhatsApp qualification bot, and an automated 7-day nurture sequence. Within 60 days, sign-up volume tripled and the owner reclaimed 10+ hours per week.</p>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="val">3×</div><div class="lbl">Trial sign-ups</div></div>
+          <div class="case-metric"><div class="val">10h/wk</div><div class="lbl">Time saved</div></div>
+          <div class="case-metric"><div class="val">60d</div><div class="lbl">Time to results</div></div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-industry">Healthcare</div>
+        <h3>SmileFirst Dental Cuts No-Shows by 60%</h3>
+        <p>Missed appointments were costing SmileFirst thousands per month. We deployed an AI receptionist with WhatsApp reminders at 24h and 2h intervals, plus an automated rebooking flow for no-shows. The result: a 60% drop in missed appointments and 2× the number of reviews on Google.</p>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="val">−60%</div><div class="lbl">No-shows</div></div>
+          <div class="case-metric"><div class="val">2×</div><div class="lbl">Google reviews</div></div>
+          <div class="case-metric"><div class="val">$4K/mo</div><div class="lbl">Revenue recovered</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="tag">Client Reviews</span>
+      <h2>What Business Owners <span class="grad-text">Are Saying</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">"Digital Flow AI built us a WhatsApp bot that books appointments 24/7. We haven't lost a single lead since we launched. Absolute game changer for our clinic."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background: var(--grad);">S</div>
+          <div><div class="testi-name">Dr. Sarah M.</div><div class="testi-role">SmileFirst Dental Clinic</div></div>
+        </div>
+      </div>
+      <div class="testi-card fade-up stagger-1">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">"Our Instagram leads used to fall through the cracks. Now they're automatically added to our CRM and followed up on. Revenue up 40% in 90 days."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background: var(--grad2);">K</div>
+          <div><div class="testi-name">Karim B.</div><div class="testi-role">FitLife Gym — Owner</div></div>
+        </div>
+      </div>
+      <div class="testi-card fade-up stagger-2">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">"They built an n8n workflow that automatically qualifies our real estate leads and books calls. I only speak to serious buyers now. Worth every dirham."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background: linear-gradient(135deg, #06B6D4, #7C3AED);">N</div>
+          <div><div class="testi-name">Nadia H.</div><div class="testi-role">PropEdge Realty</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="tag">FAQ</span>
+      <h2>Common <span class="grad-text">Questions</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-up">
+        <button class="faq-q">How long does a typical project take? <span class="chevron">▼</span></button>
+        <div class="faq-a"><p>Most projects are delivered in 7–21 days depending on complexity. A chatbot or landing page can be live in 5–7 days. A full AI automation system typically takes 2–3 weeks. We always give you a clear timeline before starting.</p></div>
+      </div>
+      <div class="faq-item fade-up stagger-1">
+        <button class="faq-q">What platforms and tools do you support? <span class="chevron">▼</span></button>
+        <div class="faq-a"><p>We work with WhatsApp Business API, Facebook Messenger, Instagram DM, Telegram, websites (WordPress, Webflow, custom), CRMs (HubSpot, Zoho, Airtable), and automation platforms including n8n, Make (Integromat), and Zapier.</p></div>
+      </div>
+      <div class="faq-item fade-up stagger-2">
+        <button class="faq-q">Can you integrate AI with my existing systems? <span class="chevron">▼</span></button>
+        <div class="faq-a"><p>Yes. We specialize in connecting AI to existing tools via API and webhooks. Whether you're using a booking system, POS, CRM, or custom database — we can build around it without disrupting what's already working.</p></div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q">Do you offer ongoing maintenance and support? <span class="chevron">▼</span></button>
+        <div class="faq-a"><p>Absolutely. We offer monthly retainer packages that include monitoring, updates, performance optimization, and support. Most clients stay on retainer so we can keep improving their systems as their business grows.</p></div>
+      </div>
+      <div class="faq-item fade-up stagger-1">
+        <button class="faq-q">How much does it cost? <span class="chevron">▼</span></button>
+        <div class="faq-a"><p>Projects are scoped individually based on your needs. A chatbot starts from $500. A full website + automation system starts from $1,500. Book a free consultation and we'll give you an exact quote with no obligation.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="BBFDAF58-B669-4FE3-A9B8-FEB50209DB09.png" alt="Digital Flow AI" onerror="this.style.display='none'">
+        <p>We help businesses automate operations, capture more leads, and grow faster with AI agents, chatbots, and smart workflows.</p>
+        <div class="tagline-row">Automate · Engage · Grow</div>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Instagram">📷</a>
+          <a href="#" class="social-link" title="Facebook">👥</a>
+          <a href="#" class="social-link" title="LinkedIn">💼</a>
+          <a href="#" class="social-link" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Websites &amp; Landing Pages</a></li>
+          <li><a href="#services">AI Agents &amp; Automation</a></li>
+          <li><a href="#services">Chatbots &amp; Messenger Bots</a></li>
+          <li><a href="#services">Lead Generation</a></li>
+          <li><a href="#services">Lead Qualification</a></li>
+          <li><a href="#services">Workflow Automation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="#industries">Restaurants</a></li>
+          <li><a href="#industries">Dental &amp; Medical</a></li>
+          <li><a href="#industries">Gyms &amp; Fitness</a></li>
+          <li><a href="#industries">Real Estate</a></li>
+          <li><a href="#industries">E-commerce</a></li>
+          <li><a href="#industries">Beauty Salons</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#results">Case Studies</a></li>
+          <li><a href="#workflows">n8n Workflows</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="mailto:hello@digitalflowai.com">hello@digitalflowai.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Digital Flow AI. All rights reserved.</p>
+      <p style="color:rgba(255,255,255,0.25);">Built with AI · Powered by Automation</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fade-up on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+      if (!isOpen) { btn.classList.add('open'); btn.nextElementSibling.classList.add('open'); }
+    });
+  });
+
+  // Mobile hamburger (simple toggle)
+  document.getElementById('hamburger').addEventListener('click', () => {
+    const links = document.querySelector('.nav-links');
+    const cta = document.querySelector('.nav-cta');
+    const isVisible = links.style.display === 'flex';
+    if (isVisible) {
+      links.style.display = ''; cta.style.display = '';
+    } else {
+      links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:white;padding:20px 24px;gap:16px;box-shadow:0 10px 40px rgba(0,0,0,0.1);z-index:99;';
+      cta.style.cssText = 'display:flex;padding:0 24px 20px;position:absolute;top:230px;left:0;right:0;background:white;z-index:99;';
+    }
+  });
+
+  // Smooth count-up on results
+  function countUp(el, target, suffix) {
+    let start = 0; const dur = 1800; const step = 16;
+    const inc = target / (dur / step);
+    const timer = setInterval(() => {
+      start += inc;
+      if (start >= target) { el.textContent = target + suffix; clearInterval(timer); }
+      else el.textContent = Math.floor(start) + suffix;
+    }, step);
+  }
+  const resultObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const nums = e.target.querySelectorAll('.result-num');
+        const data = [['3','×'],['80','%'],['60','%'],['45','%']];
+        nums.forEach((n,i) => countUp(n, parseInt(data[i][0]), data[i][1]));
+        resultObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const resultsGrid = document.querySelector('.results-grid');
+  if (resultsGrid) resultObs.observe(resultsGrid);
+</script>
+</body>
+</html>
